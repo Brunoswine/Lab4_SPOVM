@@ -13,7 +13,7 @@ unsigned int __stdcall  printString(void* arg);
 
 char strings[10][30] = { {" |1|Hello\n"}, {" |2|Privet\n"}, { " |3|Ola\n"}, {" |4|Hi\n"}, {" |5|Privitanne\n"},{" |6|Privit\n"}, {" |7|Guten_tag\n"}, {" |8|Goodbye\n"},
 {" |9|Poka\n"}, {" |10|Bruh, so far\n"} };
-/*Объект критическая секция обеспечивает синхронизацию. Этим объектом может владеть только один поток, что и обеспечивает синхронизацию. */
+
 CRITICAL_SECTION cs_print;
 
 stack<HANDLE> threads;
@@ -29,13 +29,13 @@ struct threadArg
 
 void CloseLastThread()
 {
-	closingThreads.push(threads.top()); // Добавляем id последнего потока в стек закрывающихся потоков
-	*(quitFlags.back()) = true;   // Устанавливаем флаг выхода для последнего потока
-	quitFlags.pop_back();         // Удаляем указатели на флаг закрытия последнего потока из массива
-	threads.pop();				  // Удаляем id последнего потока
+	closingThreads.push(threads.top());
+	*(quitFlags.back()) = true;   
+	quitFlags.pop_back();         
+	threads.pop();				  
 }
 
-void WaitThreads() //Ожидание потоков
+void WaitThreads() 
 {
 	while (closingThreads.size() > 0)
 	{
@@ -48,7 +48,7 @@ void AddThread()
 {
 	quitFlags.push_back(new bool(false));
 
-	threadArg* arg = new threadArg(); //создаем новый экземпляр данных о потоке
+	threadArg* arg = new threadArg(); 
 	(*arg).num = threads.size();              // Номер добавляемого потока
 	(*arg).quitFlag = quitFlags.back();		  // Указатель на флаг закрытия для данного потока
 
