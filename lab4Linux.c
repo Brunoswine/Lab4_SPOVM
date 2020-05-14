@@ -19,9 +19,8 @@ void CloseLastThread();
 void WaitThreads();
 void AddThread();
 
-char strings[10][30] = {{"1) First thread\n"}, {"2) Second thread\n"}, {"3) Third thread\n"}, {"4) Fourth thread\n"},
-                        {"5) Fifth thread\n"}, {"6) Sixth thread\n"}, {"7) Seventh thread\n"}, {"8) Eighth thread\n"}, {"9) Ninth thread\n"},
-                        {"10) Tenth thread\n"}};
+char strings[10][30] = { {" |1|Hello\n"}, {" |2|Privet\n"}, { " |3|Ola\n"}, {" |4|Hi\n"}, {" |5|Privitanne\n"},{" |6|Privit\n"}, {" |7|Guten_tag\n"}, {" |8|Goodbye\n"},
+{" |9|Poka\n"}, {" |10|Bruh, so far\n"} };
 
 pthread_mutex_t printMutex; //определяем мьютексы для печати
 
